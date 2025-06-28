@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void sub(vector<int>& arr, int A) {
+    set<vector<int>> result;
+    int n = arr.size();
+    for (int i = 0; i < n - 3; i++) {
+        for (int l = i + 3; l < n; l++) {
+            int j = i + 1, k = l - 1;
+            while (j < k) {
+                int sum = arr[i] + arr[j] + arr[k] + arr[l];
+                if (sum == A) {
+                    vector<int> quad = {arr[i], arr[j], arr[k], arr[l]};
+                    sort(quad.begin(), quad.end());
+                    result.insert(quad);
+                    j++;
+                    k--;
+                } 
+                else if (sum < A) j++;
+                else k--;
+            }
+        }
+    }
+    for (auto quad : result) {
+        cout << "[";
+        for (int num : quad) cout << num << " ";
+        cout << "] ";
+    }
+}
+
+int main() {
+    int A, n;
+    cin >> A >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) cin >> arr[i];
+    sort(arr.begin(), arr.end());
+    sub(arr, A);
+    return 0;
+}
