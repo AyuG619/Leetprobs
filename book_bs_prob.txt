@@ -9,7 +9,7 @@ int canbeallocated(vector<int> &nums,int m,int mid){
                 pages=nums[i];
                 count++;
             }    
-            pages=pages+nums[i];
+            else pages=pages+nums[i];
         }
         return count;
     }
